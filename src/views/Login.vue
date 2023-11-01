@@ -7,8 +7,7 @@
         <input
             id="email"
             type="text"
-            class="validate"
-        >
+            class="validate">
         <label for="email">Email</label>
         <small class="helper-text invalid">Email</small>
       </div>

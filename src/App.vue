@@ -12,14 +12,14 @@
 </style>
 
 <script>
-import EmptyLayout from "@/layouts/EmptyLayout.vue";
-import MainLayout from "@/layouts/MainLayout.vue";
-import router from "@/router";
+import EmptyLayout from '@/layouts/EmptyLayout.vue'
+import MainLayout from '@/layouts/MainLayout.vue'
+import router from '@/router'
 export default {
   computed: {
-    layout() {
-      return (this.$route.meta.layout || "empty") + "-layout"
-      //Определяем фон компонента, если есть layout то переходим по нему, нет - серый фон "empty" в router
+    layout () {
+      return (this.$route.meta.layout || 'empty') + '-layout'
+      // Определяем фон компонента, если есть layout то переходим по нему, нет - серый фон "empty" в router
     }
   },
   components: {
