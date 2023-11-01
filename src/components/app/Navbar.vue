@@ -5,12 +5,13 @@
         <a href="#" @click.prevent="$emit('open-nav')">
           <i class="material-icons black-text">dehaze</i>
         </a>
-        <span class="black-text">12.12.12</span>
+        <span class="black-text">{{ date | date('datetime') }}</span>
       </div>
 
       <ul class="right hide-on-small-and-down">
         <li>
           <a
+              ref="dropdown"
               class="dropdown-trigger black-text"
               href="#"
               data-target="dropdown"
@@ -21,13 +22,13 @@
 
           <ul id='dropdown' class='dropdown-content'>
             <li>
-              <a href="#" class="black-text">
+              <router-link to="/profile" class="black-text">
                 <i class="material-icons">account_circle</i>Профиль
-              </a>
+              </router-link>
             </li>
             <li class="divider" tabindex="-1"></li>
             <li>
-              <a href="#" class="black-text">
+              <a href="#" class="black-text" @click.prevent="logout">
                 <i class="material-icons">assignment_return</i>Выйти
               </a>
             </li>
@@ -38,8 +39,34 @@
   </nav>
 </template>
 
-<script setup lang="ts">
-
+<script>
+export default {
+  data: () => ({
+    date: new Date(),
+    interval: null,
+    dropdown: null
+  }),
+  methods: {
+    logout () {
+      console.log('logout')
+      this.$router.push('/login?message=logout') // При нажатии на кнопку выйти, переходит на страницу авторизации
+    }
+  },
+  mounted () {
+    this.interval = setInterval(() => { // Обновляем время каждую секунду
+      this.date = new Date()
+    }, 1000)
+    this.dropdown = M.Dropdown.init(this.$refs.dropdown, { // Обращение к materializecss, объект M, к user, dropdown
+      constrainWidth: true // Dropdown не больше ширины блока
+    })
+  },
+  beforeDestroy () { // Чтобы избежать утечек памяти
+    clearInterval(this.interval) // Очищаем вызов функции с временем
+    if (this.dropdown && this.dropdown.destroy) {
+      this.dropdown.destroy
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">
