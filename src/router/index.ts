@@ -6,9 +6,9 @@ Vue.use(VueRouter)
 const routes: Array<RouteConfig> = [
   {
     path: '/login',
-    name: 'login',
+    name: 'loginForm',
     meta: { layout: 'empty' }, // Серый фон
-    component: () => import('../views/Login.vue') // Lazy loading
+    component: () => import('../views/LoginForm.vue') // Lazy loading
   },
   {
     path: '/register',
