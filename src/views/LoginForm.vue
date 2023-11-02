@@ -73,17 +73,20 @@ export default {
     }
   },
   methods: {
-    submitHandler () {
+    async submitHandler () {
       if (this.$v.$invalid) { // Если не валидно
         this.$v.$touch() // Вызываем метод, который позволяет активизировать валидацию
         return
       }
-      const formData = {
+      const formData = { // Объект с введенными данными
         email: this.email,
         password: this.password
       }
-      console.log(formData)
-      this.$router.push('/') // На главную страницу
+      try {
+        await this.$store.dispatch('login', formData) // Передаём их в store
+
+        await this.$router.push('/') // На главную страницу
+      } catch (e) {}
     }
   }
 }
