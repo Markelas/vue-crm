@@ -47,9 +47,9 @@ export default {
     dropdown: null
   }),
   methods: {
-    logout () {
-      console.log('logout')
-      this.$router.push('/login?message=logout') // При нажатии на кнопку выйти, переходит на страницу авторизации
+    async logout () {
+      await this.$store.dispatch('logout')
+      await this.$router.push('/login?message=logout') // При нажатии на кнопку выйти, переходит на страницу авторизации
     }
   },
   mounted () {

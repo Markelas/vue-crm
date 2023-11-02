@@ -86,7 +86,7 @@ export default {
     checkAgree: { checked: (value) => value } // Должно быть true
   },
   methods: {
-    submitHandler () {
+    async submitHandler () {
       if (this.$v.$invalid) { // Если не валидно
         this.$v.$touch() // Вызываем метод, который позволяет активизировать валидацию
         return
@@ -96,8 +96,11 @@ export default {
         password: this.password,
         name: this.name
       }
-      console.log(formData)
-      this.$router.push('/')
+      try {
+        await this.$store.dispatch('register', formData)
+        await this.$router.push('/')
+      } catch (e) {
+      }
     }
   }
 }
