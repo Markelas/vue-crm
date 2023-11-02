@@ -55,6 +55,7 @@ import {
   required,
   minLength
 } from 'vuelidate/lib/validators'
+import messages from '@/utils/messages'
 export default {
   name: 'loginForm',
   data: () => ({
@@ -64,6 +65,12 @@ export default {
   validations: {
     email: { email, required },
     password: { required, minLength: minLength(8) }
+  },
+  mounted () {
+    if (messages[this.$route.query.message]) { // Проверяем, есть ли сообщение в параметрах
+      this.$message(messages[this.$route.query.message]) // Используем плагин из message.plugin.ts, для отображения сообщения
+      // если мы вышли из системы
+    }
   },
   methods: {
     submitHandler () {
@@ -76,7 +83,7 @@ export default {
         password: this.password
       }
       console.log(formData)
-      this.$router.push('/')
+      this.$router.push('/') // На главную страницу
     }
   }
 }
