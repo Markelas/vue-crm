@@ -14,7 +14,6 @@
 <script>
 import EmptyLayout from '@/layouts/EmptyLayout.vue'
 import MainLayout from '@/layouts/MainLayout.vue'
-import router from '@/router'
 export default {
   computed: {
     layout () {
