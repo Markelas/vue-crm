@@ -1,24 +1,27 @@
 <template>
-  <div class="app-main-layout">
+  <div>
+    <loader-app v-if="loading"/>
+    <div v-else class="app-main-layout">
 
-    <Navbar @open-nav="isOpenNav = !isOpenNav"/>
+      <Navbar @open-nav="isOpenNav = !isOpenNav"/>
 
-    <Sidebar v-model="isOpenNav"/>
+      <Sidebar v-model="isOpenNav"/>
 
-    <main class="app-content" :class="{full: !isOpenNav}">
-      <div class="app-page">
-        <router-view/>
+      <main class="app-content" :class="{full: !isOpenNav}">
+        <div class="app-page">
+          <router-view/>
+        </div>
+      </main>
+      <div class="fixed-action-btn">
+        <router-link class="btn-floating btn-large blue" to="/record">
+          <i class="large material-icons">add</i>
+        </router-link>
       </div>
-    </main>
-    <div class="fixed-action-btn">
-      <router-link class="btn-floating btn-large blue" to="/record">
-        <i class="large material-icons">add</i>
-      </router-link>
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Sidebar from '@/components/app/Sidebar.vue'
 import Navbar from '@/components/app/Navbar.vue'
 export default {
@@ -27,8 +30,15 @@ export default {
     Navbar, Sidebar
   },
   data: () => ({
-    isOpenNav: true
-  })
+    isOpenNav: true,
+    loading: true
+  }),
+  async mounted () {
+    if (!Object.keys(this.$store.getters.info).length) { // Если есть в info информация о пользователе
+      await this.$store.dispatch('fetchInfo') // Делаем асинхронный запрос на получение данных о пользователе
+    }
+    this.loading = false
+  }
 }
 </script>
 
