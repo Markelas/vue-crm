@@ -7,7 +7,7 @@
 
       <form>
         <div class="input-field" >
-          <select>
+          <select ref="select">
             <option>Category</option>
           </select>
           <label>Выберите категорию</label>
@@ -37,8 +37,26 @@
   </div>
 </template>
 
-<script setup lang="ts">
-
+<script>
+export default {
+  props: {
+    categories: {
+      type: Array,
+      required: true
+    }
+  },
+  data: () => ({
+    select: null
+  }),
+  mounted () {
+    this.select = M.FormSelect.init(this.$refs.select)
+  },
+  destroyed () {
+    if (this.select && this.select.destroy) {
+      this.select.destroy()
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">
