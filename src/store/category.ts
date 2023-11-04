@@ -28,6 +28,18 @@ export default {
         commit('setError', e)
         throw e
       }
+    },
+    // @ts-ignore
+    async updateCategory ({ commit, dispatch }, { title, limit, id }) {
+      try {
+        const uid = await dispatch('getUid') // Получаем uid пользователя
+        const database = getDatabase()
+        await set(ref(database, `/users/${uid}/categories/${id}`), { title, limit })
+      } catch (e) {
+        console.log(e)
+        commit('setError', e)
+        throw e
+      }
     }
   }
 }

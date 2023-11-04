@@ -28,7 +28,12 @@
             :class="{invalid: ($v.limit.$dirty && !$v.limit.required)}"
           >
           <label for="limit">Лимит</label>
-          <span  v-if="($v.limit.$dirty && !$v.limit.required)" class="helper-text invalid" >Минимальная сумма {{$v.limit.$params.minValue.min}} рублей</span>
+          <span
+            v-if="($v.limit.$dirty && !$v.limit.required)"
+            class="helper-text invalid"
+          >
+            Минимальная сумма {{$v.limit.$params.minValue.min}} рублей
+          </span>
         </div>
 
         <button class="btn waves-effect waves-light" type="submit">
