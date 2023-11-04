@@ -1,5 +1,5 @@
 import firebase from 'firebase/compat/app'
-import { getDatabase, ref, get } from 'firebase/database'
+import { getDatabase, ref, get, set } from 'firebase/database'
 
 export default {
   state: {
@@ -16,6 +16,21 @@ export default {
   },
   actions: {
     // @ts-ignore
+    async updateInfo ({ dispatch, commit, getters }, toUpdate) {
+      try {
+        const uid = await dispatch('getUid')
+        const updateData = { ...getters.info, ...toUpdate } // Получаем информацию из info о пользователе, добавляем измененные данные из toUpdate
+        const database = getDatabase()
+        console.log(updateData)
+        await set(ref(database, `/users/${uid}/info`), { updateData })
+        commit('setInfo', updateData) // Обновляем также информацию в info
+      } catch (e) {
+        commit('setError', e)
+        console.log(e)
+        throw e
+      }
+    },
+    // @ts-ignore
     async fetchInfo ({ dispatch, commit }) {
       try {
         const uid = await dispatch('getUid')
@@ -24,7 +39,9 @@ export default {
         const userInfo = info.val() // Получаем значения
         commit('setInfo', userInfo) // Передаем объект со значениями в мутации, для изменения state
       } catch (e) {
+        commit('setError', e)
         console.log(e)
+        throw e
       }
     }
   },

@@ -22,7 +22,11 @@ export default {
         const categories = (await get(ref(database, `/users/${uid}/categories`)))
         const categoriesObj = categories.val()
         // @ts-ignore
-        return Object.keys(categoriesObj).map(key => ({ ...categoriesObj[key], id: key }))
+        if (categoriesObj) {
+          return Object.keys(categoriesObj).map(key => ({ ...categoriesObj[key], id: key }))
+        } else {
+          return []
+        }
         // С firebase приходил ID и в нем значения, переформировал
       } catch (e) {
         commit('setError', e)
