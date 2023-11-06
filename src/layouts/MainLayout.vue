@@ -24,6 +24,7 @@
 <script>
 import Sidebar from '@/components/app/Sidebar.vue'
 import Navbar from '@/components/app/Navbar.vue'
+import messages from '@/utils/messages'
 export default {
   name: 'main-layout',
   components: {
@@ -38,6 +39,16 @@ export default {
       await this.$store.dispatch('fetchInfo') // Делаем асинхронный запрос на получение данных о пользователе
     }
     this.loading = false
+  },
+  computed: {
+    error () {
+      return this.$store.getters.error
+    }
+  },
+  watch: {
+    error (firebaseError) { // Отслеживаем ошибки, которые присылает firebase
+      this.$error(messages[firebaseError.code] || 'Что-то пошло не так') // Передаем сюда ошибку
+    }
   }
 }
 </script>

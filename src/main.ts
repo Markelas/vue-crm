@@ -12,6 +12,8 @@ import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
 import currencyFilter from '../filters/currency.filter'
+// @ts-ignore
+import tooltipDirective from '@/directives/tooltip.directive.js'
 
 Vue.config.productionTip = false
 
@@ -19,6 +21,7 @@ Vue.use(messagePlugin)
 Vue.use(Vuelidate)
 Vue.filter('date', dateFilter)
 Vue.filter('currency', currencyFilter)
+Vue.directive('tooltip', tooltipDirective)
 Vue.component('LoaderApp', LoaderApp)
 
 firebase.initializeApp({
