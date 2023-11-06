@@ -3,7 +3,7 @@
     <div class="page-title">
       <h3>Категории</h3>
     </div>
-    <section>
+    <section class="form-wrapper">
       <LoaderApp v-if="loading"/>
       <div v-else class="row">
         <category-create @created="addNewCategory"/>
@@ -52,5 +52,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+::v-deep.page-title{
+  h3 {
+    font-weight: 500;
+    color: #2c3e50;
+  }
+}
+.form-wrapper{
+  background-color: white;
+  height: 100%;
+  padding: 30px;
+  border-radius: 16px;
+}
 </style>

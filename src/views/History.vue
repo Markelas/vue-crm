@@ -2,14 +2,14 @@
   <div class="app-page">
     <div>
       <div class="page-title">
-        <h3>История записей</h3>
+        <h3>История записей [СТРАНИЦА В РАЗРАБОТКЕ]</h3>
       </div>
 
-      <div class="history-chart">
+      <div class="history-chart hide">
         <canvas></canvas>
       </div>
 
-      <section>
+      <section class="history-table">
         <table>
           <thead>
           <tr>
@@ -49,5 +49,16 @@
 </script>
 
 <style scoped lang="scss">
-
+::v-deep.page-title{
+  h3 {
+    font-weight: 500;
+    color: #2c3e50;
+  }
+}
+.history-table{
+  background-color: white;
+  height: 100%;
+  padding: 40px;
+  border-radius: 16px;
+}
 </style>

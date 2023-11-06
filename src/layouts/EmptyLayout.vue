@@ -1,5 +1,5 @@
 <template>
-  <div class="grey darken-1 empty-layout">
+  <div class="empty-layout">
       <router-view/>
   </div>
 </template>
@@ -21,5 +21,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.empty-layout{
+  background-color: #2c3e50;
+}
 </style>

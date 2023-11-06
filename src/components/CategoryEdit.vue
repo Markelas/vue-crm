@@ -118,5 +118,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+::v-deep.input-field{
+  margin: 35px 0;
+}
 </style>

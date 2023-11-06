@@ -9,7 +9,7 @@
 
       <p v-else-if="!categories.length" class="center">Категорий пока нет. <router-link to="/categories">Добавить категорию</router-link></p>
 
-      <form v-else class="form" @submit.prevent="submitHandler">
+      <form v-else class="form form-wrapper" @submit.prevent="submitHandler">
         <div class="input-field" >
           <select ref="select" v-model="category">
             <option
@@ -173,5 +173,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+::v-deep.page-title{
+  h3 {
+    font-weight: 500;
+    color: #2c3e50;
+  }
+}
+.form-wrapper{
+  background-color: white;
+  height: 100%;
+  padding: 30px;
+  border-radius: 16px;
+}
 </style>

@@ -46,3 +46,12 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+::v-deep.page-title{
+  h3 {
+    font-weight: 500;
+    color: #2c3e50;
+  }
+}
+</style>

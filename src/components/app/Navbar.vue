@@ -1,13 +1,13 @@
 <template>
-  <nav class="navbar orange lighten-1">
+  <nav class="navbar white">
     <div class="nav-wrapper">
       <div class="navbar-left">
         <a href="#" @click.prevent="$emit('open-nav')">
           <i class="material-icons black-text">dehaze</i>
         </a>
-        <span class="black-text">{{ date | date('datetime') }}</span>
+        <h5 class="navbar-title black-text">Приложение для домашней бухгалтерии</h5>
       </div>
-
+      <span class="black-text">Текущее время: {{ date | date('datetime') }}</span>
       <ul class="right hide-on-small-and-down">
         <li>
           <a
@@ -75,5 +75,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.navbar-title {
+  margin: 0 0 0 40px;
+  font-weight: 500;
+}
 </style>

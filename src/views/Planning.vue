@@ -11,8 +11,8 @@
 
         <p v-else-if="!categories.length" class="center">Категорий пока нет. <router-link to="/categories">Добавить категорию</router-link></p>
 
-        <section v-else>
-          <div v-for="item in categories" :key="item.id">
+        <section v-else class="planning-table">
+          <div v-for="item in categories" :key="item.id" class="planning-table-items">
             <p>
               <strong>{{item.title}}</strong>
               {{item.spend | currency}} из {{item.limit | currency}}
@@ -84,5 +84,19 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+::v-deep.page-title{
+  h3 {
+    font-weight: 500;
+    color: #2c3e50;
+  }
+}
+::v-deep.planning-table{
+  background-color: white;
+  height: 100%;
+  padding: 10px 30px;
+  border-radius: 16px;
+  &-items{
+    margin: 40px 0;
+  }
+}
 </style>

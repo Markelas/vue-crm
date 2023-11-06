@@ -54,5 +54,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+::v-deep.app-main-layout{
+  background-color: rgba(189, 203, 229, 0.66);
+}
 
 </style>

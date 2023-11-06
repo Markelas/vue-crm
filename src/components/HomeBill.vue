@@ -1,6 +1,6 @@
 <template>
   <div class="col s12 m6 l4">
-    <div class="card light-blue bill-card">
+    <div class="card bill-card">
       <div class="card-content white-text">
         <span class="card-title">Счет в валюте</span>
         <p class="currency-line">
@@ -37,5 +37,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+::v-deep.bill-card{
+  background-color: #359d6f;
+  border-radius: 16px;
+  .card-title{
+    font-weight: 500;
+  }
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
   <form class="card auth-card" @submit.prevent="submitHandler">
     <div class="card-content">
-      <span class="card-title">Домашняя бухгалтерия</span>
+      <span class="card-title center">Домашняя бухгалтерия</span>
       <div class="input-field">
         <input
           id="email"
@@ -107,5 +107,16 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.auth-card{
+  border-radius: 16px;
+  .input-field{
+    margin-top: 25px;
+  }
+  .card-action{
+    border-radius: 0 0 16px 16px;
+  }
+}
+.card-title{
+  font-weight: 500;
+}
 </style>
