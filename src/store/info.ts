@@ -22,7 +22,9 @@ export default {
         const updateData = { ...getters.info, ...toUpdate } // Получаем информацию из info о пользователе, добавляем измененные данные из toUpdate
         const database = getDatabase()
         console.log(updateData)
-        await set(ref(database, `/users/${uid}/info`), { updateData })
+        const bill = updateData.bill
+        const username = updateData.username
+        await set(ref(database, `/users/${uid}/info`), { bill, username })
         commit('setInfo', updateData) // Обновляем также информацию в info
       } catch (e) {
         commit('setError', e)

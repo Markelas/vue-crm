@@ -11,6 +11,7 @@ export default {
         await set(ref(database, `/users/${uid}/categories/${categoryID}`), { title, limit })
         return { title, limit, categoryID }
       } catch (e) {
+        console.error(e)
         commit('setError', e)
         throw e
       }
@@ -21,7 +22,6 @@ export default {
         const database = getDatabase()
         const categories = (await get(ref(database, `/users/${uid}/categories`)))
         const categoriesObj = categories.val()
-        // @ts-ignore
         if (categoriesObj) {
           return Object.keys(categoriesObj).map(key => ({ ...categoriesObj[key], id: key }))
         } else {
@@ -29,6 +29,7 @@ export default {
         }
         // С firebase приходил ID и в нем значения, переформировал
       } catch (e) {
+        console.log(e)
         commit('setError', e)
         throw e
       }
